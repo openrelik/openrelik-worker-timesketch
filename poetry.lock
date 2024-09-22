@@ -90,13 +90,13 @@ lxml = ["lxml"]
 
 [[package]]
 name = "billiard"
-version = "4.2.0"
+version = "4.2.1"
 description = "Python multiprocessing fork with improvements and bugfixes"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "billiard-4.2.0-py3-none-any.whl", hash = "sha256:07aa978b308f334ff8282bd4a746e681b3513db5c9a514cbdd810cbbdc19714d"},
-    {file = "billiard-4.2.0.tar.gz", hash = "sha256:9a3c3184cb275aa17a732f93f65b20c525d3d9f253722d26a82194803ade5a2c"},
+    {file = "billiard-4.2.1-py3-none-any.whl", hash = "sha256:40b59a4ac8806ba2c2369ea98d876bc6108b051c227baffd928c644d15d8f3cb"},
+    {file = "billiard-4.2.1.tar.gz", hash = "sha256:12b641b0c539073fc8d3f5b8b7be998956665c4233c7c1fcd66a7e677c4fb36f"},
 ]
 
 [[package]]
@@ -805,13 +805,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openrelik-worker-common"
-version = "2024.9.19"
+version = "2024.9.22"
 description = "Common utilities for OpenRelik workers"
 optional = false
 python-versions = "<4.0,>=3.10"
 files = [
-    {file = "openrelik_worker_common-2024.9.19-py3-none-any.whl", hash = "sha256:a597c9c7d33291b21258ce68df37e5b24d1ea4fbb6d69f807d6ac9ec109dd8ea"},
-    {file = "openrelik_worker_common-2024.9.19.tar.gz", hash = "sha256:318e8b6ca6dd4e3fbe173ef561bcae3fea8db42e45423bd9a2c222b23fc2cd72"},
+    {file = "openrelik_worker_common-2024.9.22-py3-none-any.whl", hash = "sha256:3ff7d17a33cba401909f20a848368df43bf53f33bdd09da26559f47be27b58b8"},
+    {file = "openrelik_worker_common-2024.9.22.tar.gz", hash = "sha256:363cb85931516a471c9fb8e02b80c9c26a8d9523f248d4f8928744a32d6bcad0"},
 ]
 
 [[package]]
@@ -1384,4 +1384,4 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "203d43269268a5f55397c2d0becd0c9b89d018e4281cc2a5a6fd7ae64cd5e6e4"
+content-hash = "1695a4c002009a230841cec4d52bfde1d9468e8075db1aef99294aa3adb002bd"
