@@ -152,7 +152,7 @@ def upload(
     # Import each input file to it's own index.
     for input_file in input_files:
         input_file_path = input_file.get("path")
-        timeline_name = input_file.get("filename")
+        timeline_name = input_file.get("display_name")
         with importer.ImportStreamer() as streamer:
             streamer.set_sketch(sketch)
             streamer.set_timeline_name(timeline_name)
