@@ -1,6 +1,6 @@
 ### Openrelik worker for interacting with a Timesketch server
 
-#### Install
+#### Installation
 Add to your docker-compose configuration:
 
 ```
