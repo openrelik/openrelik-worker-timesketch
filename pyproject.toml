@@ -9,7 +9,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.10"
 celery = {extras = ["redis"], version = "^5.4.0"}
-openrelik-worker-common = "^2024.9.23"
+openrelik-worker-common = "^2024.10.7"
 timesketch-api-client = "^20240215"
 timesketch-import-client = "^20230721"
 
