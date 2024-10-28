@@ -741,13 +741,13 @@ files = [
 
 [[package]]
 name = "narwhals"
-version = "1.10.0"
+version = "1.11.0"
 description = "Extremely lightweight compatibility layer between dataframe libraries"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "narwhals-1.10.0-py3-none-any.whl", hash = "sha256:c83a378960651c391e5f3d68af3a821eda74c9713073518fe0c39aefc5ad8f8e"},
-    {file = "narwhals-1.10.0.tar.gz", hash = "sha256:a380e64110c3169c4b0b592c5b64ae6dc4cce76e9d3c56edc608a8ae5994cfc1"},
+    {file = "narwhals-1.11.0-py3-none-any.whl", hash = "sha256:672b76d04ae17e968c90cdf275912b292a94af3a61f44acd961fb2b5efad53a8"},
+    {file = "narwhals-1.11.0.tar.gz", hash = "sha256:b440e3d75b010ef16c8d81fe488cca465491fd45ad4698b6fe9a8a2efa6b6a01"},
 ]
 
 [package.extras]
@@ -857,13 +857,13 @@ signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
 
 [[package]]
 name = "openrelik-worker-common"
-version = "2024.10.25"
+version = "2024.10.28"
 description = "Common utilities for OpenRelik workers"
 optional = false
 python-versions = "<4.0,>=3.10"
 files = [
-    {file = "openrelik_worker_common-2024.10.25-py3-none-any.whl", hash = "sha256:4449d442f82bb6dad125210b82e7319d778d68eee5e241ea4cdd244f2dd5cd1b"},
-    {file = "openrelik_worker_common-2024.10.25.tar.gz", hash = "sha256:cd98dbfc956ffa679e057becdee006f303b6d7b9b9827ca7d89372ef2fdab172"},
+    {file = "openrelik_worker_common-2024.10.28-py3-none-any.whl", hash = "sha256:4d41d4534ae0a040f2f9a815178db5836b892ce5797bb988ef4d5d38fb454be3"},
+    {file = "openrelik_worker_common-2024.10.28.tar.gz", hash = "sha256:189af66df0f6a7d1790b32f0d1f8dec5933f98d0120390afa1b3a94b27e7b049"},
 ]
 
 [package.dependencies]
@@ -1439,4 +1439,4 @@ test = ["pytest", "pytest-cov"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "7ee53e17a7adad7fa99bfdc8635961a4ebceadca8dd6f5470ffba0170718daa2"
+content-hash = "dacf18c4edb6e1e5a98ef4d5129a43ecac6545db191dc130ae095273eab43345"
