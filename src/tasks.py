@@ -14,7 +14,7 @@
 
 import os
 
-from openrelik_worker_common.utils import get_input_files, task_result
+from openrelik_worker_common.task_utils import create_task_result, get_input_files
 from timesketch_api_client import client as timesketch_client
 from timesketch_import_client import importer
 
@@ -158,7 +158,7 @@ def upload(
             streamer.set_timeline_name(timeline_name)
             streamer.add_file(input_file_path)
 
-    return task_result(
+    return create_task_result(
         output_files=[],
         workflow_id=workflow_id,
         command="Timesketch Importer Client",
