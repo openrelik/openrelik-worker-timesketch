@@ -126,6 +126,7 @@ def upload(
     # User supplied config.
     sketch_id = task_config.get("sketch_id")
     sketch_name = task_config.get("sketch_name")
+    sketch_identifier = {"sketch_id": sketch_id} if sketch_id else {"sketch_name": sketch_name}
 
     # Create a Timesketch API client.
     timesketch_api_client = timesketch_client.TimesketchApi(
@@ -138,7 +139,7 @@ def upload(
     sketch = get_or_create_sketch(
         timesketch_api_client,
         redis_client,
-        sketch_id=sketch_id,
+        **sketch_identifier,
         workflow_id=workflow_id,
     )
 
