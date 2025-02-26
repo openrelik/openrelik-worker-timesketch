@@ -79,14 +79,14 @@ TASK_METADATA = {
         {
             "name": "sketch_id",
             "label": "Add to an existing sketch",
-            "description": "Add to an existing sketch",
+            "description": "Provide the numerical sketch ID of the existing sketch",
             "type": "text",
             "required": False,
         },
         {
             "name": "sketch_name",
             "label": "Create a new sketch",
-            "description": "Create a new sketch",
+            "description": "Provide a name for the new sketch",
             "type": "text",
             "required": False,
         },
