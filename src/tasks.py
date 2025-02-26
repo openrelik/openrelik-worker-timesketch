@@ -47,7 +47,16 @@ def get_or_create_sketch(
     if sketch_id:
         sketch = timesketch_api_client.get_sketch(int(sketch_id))
     elif sketch_name:
-        sketch = timesketch_api_client.create_sketch(sketch_name)
+        sketch_id = ""
+        sketches = timeskech_api_client.list_sketches()
+            for sketch in sketches:
+                if sketch.name == sketch_name:
+                    sketch_id = sketch.id
+
+        if sketch_id != ""
+            sketch = timesketch_api_client.get_sketch(int(sketch_id))
+        else:
+            sketch = timesketch_api_client.create_sketch(sketch_name)
     else:
         sketch_name = f"openrelik-workflow-{workflow_id}"
         # Prevent multiple distributed workers from concurrently creating the same
