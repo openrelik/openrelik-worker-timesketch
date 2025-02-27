@@ -78,15 +78,22 @@ TASK_METADATA = {
     "task_config": [
         {
             "name": "sketch_id",
-            "label": "Add to an existing sketch",
+            "label": "Enter the ID of the sketch you want to use",
             "description": "Add to an existing sketch",
             "type": "text",
             "required": False,
         },
         {
             "name": "sketch_name",
-            "label": "Create a new sketch",
+            "label": "Name of the new sketch to create",
             "description": "Create a new sketch",
+            "type": "text",
+            "required": False,
+        },
+        {
+            "name": "timeline_name",
+            "label": "Name of the timeline to create",
+            "description": "Timeline name",
             "type": "text",
             "required": False,
         },
@@ -126,7 +133,9 @@ def upload(
     # User supplied config.
     sketch_id = task_config.get("sketch_id")
     sketch_name = task_config.get("sketch_name")
-    sketch_identifier = {"sketch_id": sketch_id} if sketch_id else {"sketch_name": sketch_name}
+    sketch_identifier = (
+        {"sketch_id": sketch_id} if sketch_id else {"sketch_name": sketch_name}
+    )
 
     # Create a Timesketch API client.
     timesketch_api_client = timesketch_client.TimesketchApi(
@@ -148,12 +157,14 @@ def upload(
 
     # Make the sketch public.
     # TODO: Make this user configurable.
-    sketch.add_to_acl(group_list=["all"])
+    sketch.add_to_acl(make_public=True)
 
     # Import each input file to it's own index.
     for input_file in input_files:
         input_file_path = input_file.get("path")
-        timeline_name = input_file.get("display_name")
+        timeline_name = task_config.get("timeline_name") or input_file.get(
+            "display_name"
+        )
         with importer.ImportStreamer() as streamer:
             streamer.set_sketch(sketch)
             streamer.set_timeline_name(timeline_name)
