@@ -78,8 +78,8 @@ TASK_METADATA = {
     "task_config": [
         {
             "name": "sketch_id",
-            "label": "Enter the ID of the sketch you want to use",
-            "description": "Add to an existing sketch",
+            "label": "Add to an existing sketch",
+            "description": "Provide the numerical sketch ID of the existing sketch",
             "type": "text",
             "required": False,
         },
