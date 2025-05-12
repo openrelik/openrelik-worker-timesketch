@@ -78,8 +78,13 @@ TASK_METADATA = {
     "task_config": [
         {
             "name": "sketch_id",
+<<<<<<< HEAD
             "label": "Enter the ID of the sketch you want to use",
             "description": "Add to an existing sketch",
+=======
+            "label": "Add to an existing sketch",
+            "description": "Provide the numerical sketch ID of the existing sketch",
+>>>>>>> main
             "type": "text",
             "required": False,
         },
@@ -133,7 +138,9 @@ def upload(
     # User supplied config.
     sketch_id = task_config.get("sketch_id")
     sketch_name = task_config.get("sketch_name")
-    sketch_identifier = {"sketch_id": sketch_id} if sketch_id else {"sketch_name": sketch_name}
+    sketch_identifier = (
+        {"sketch_id": sketch_id} if sketch_id else {"sketch_name": sketch_name}
+    )
 
     # Create a Timesketch API client.
     timesketch_api_client = timesketch_client.TimesketchApi(
@@ -155,7 +162,7 @@ def upload(
 
     # Make the sketch public.
     # TODO: Make this user configurable.
-    sketch.add_to_acl(group_list=["all"])
+    sketch.add_to_acl(make_public=True)
 
     # Import each input file to it's own index.
     for input_file in input_files:
