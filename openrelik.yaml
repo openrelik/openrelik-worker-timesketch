@@ -3,7 +3,7 @@ publish: true
 
 # Worker Metadata. This section is required.
 display_name: Timesketch
-description: Export Plaso and supported CSV/JSON files to Timesketch.
+description: Export Plaso and compatible CSV/JSON files to Timesketch.
 
 # Optional: Third-Party Tools Used by the Worker.
 tools:
