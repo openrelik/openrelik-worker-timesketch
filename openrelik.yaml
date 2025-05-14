@@ -3,11 +3,9 @@ publish: true
 
 # Worker Metadata. This section is required.
 display_name: Timesketch worker
-description: >
-  Export Plaso and supported CSV/JSON files to Timesketch.
+description: Export Plaso and supported CSV/JSON files to Timesketch.
   
-# Third-Party Tools Used by the Worker.
-# This section is optional. If you don't use any third-party tools, you can remove it.
+# Optional: Third-Party Tools Used by the Worker.
 tools:
   - display_name: Timesketch
     description: Collaborative timeline analysis tool
