@@ -1,5 +1,21 @@
 ## Openrelik worker for interacting with a Timesketch server
 
+This worker integrates OpenRelik with [Timesketch](https://timesketch.org/), an open-source tool for collaborative forensic timeline analysis.
+
+## Description
+
+The OpenRelik Timesketch worker enables the following functionalities:
+
+*   **Uploading timelines to Timesketch:** Processed data or specific artifacts from OpenRelik can be sent to a Timesketch instance to create new timelines or append to existing ones.
+*   **Managing Timesketch sketches:** The worker can interact with Timesketch to list, create, or manage sketches (investigations).
+
+## Prerequisites
+
+*   A running OpenRelik instance.
+*   A running Timesketch instance.
+*   Network connectivity between the OpenRelik worker container and the Timesketch server.
+
+
 ### Installation
 Add to your docker-compose configuration:
 
@@ -12,8 +28,10 @@ Add to your docker-compose configuration:
       - REDIS_URL=redis://openrelik-redis:6379
       - TIMESKETCH_SERVER_URL=https://<REPLACE_WITH_YOUR_TIMESKETCH_SERVER>
       - TIMESKETCH_SERVER_PUBLIC_URL=https://<REPLACE_WITH_YOUR_TIMESKETCH_SERVER>
-      - TIMESKETCH_USERNAME=dev
-      - TIMESKETCH_PASSWORD=dev
+        # Credentials for the Timesketch user the worker will use.
+        # It's recommended to create a dedicated service account in Timesketch for this worker.
+      - TIMESKETCH_USERNAME=<REPLACE_WITH_TIMESKETCH_USERNAME>
+      - TIMESKETCH_PASSWORD=<REPLACE_WITH_TIMESKETCH_PASSWORD>
     volumes:
       - ./data:/usr/share/openrelik/data
     command: "celery --app=src.app worker --task-events --concurrency=1 --loglevel=INFO -Q openrelik-worker-timesketch"
