@@ -52,31 +52,65 @@ def get_or_create_sketch(
         timesketch_api_client.Sketch or None: The retrieved or created Timesketch
             sketch object, or None if the operation failed (e.g., sketch not found
             when an ID is provided, or creation fails).
+
+    Raises:
+        ValueError: If sketch_id is provided but the sketch is not found,
+                    or if workflow_id is missing when required for default naming.
+        RuntimeError: If sketch creation or retrieval fails for other reasons,
+                      such as API errors.
     """
     sketch = None
 
     if sketch_id:
-        sketch = timesketch_api_client.get_sketch(int(sketch_id))
+        try:
+            sketch = timesketch_api_client.get_sketch(int(sketch_id))
+            if not sketch:
+                # If the client returns None for a non-existent sketch
+                raise ValueError(f"Sketch with ID '{sketch_id}' not found.")
+            return sketch  # Successfully retrieved sketch by ID
+        except Exception as e:
+            # Catch specific exceptions from the client if possible,
+            # otherwise, a general exception indicates failure.
+            raise RuntimeError(
+                f"Failed to retrieve sketch with ID '{sketch_id}': {e}"
+            ) from e
     elif sketch_name:
-        sketch = timesketch_api_client.create_sketch(sketch_name)
+        try:
+            sketch = timesketch_api_client.create_sketch(sketch_name)
+            if not sketch:  # If create_sketch can return None on failure
+                raise RuntimeError(
+                    f"Failed to create sketch with name '{sketch_name}' (API returned no sketch object)."
+                )
+            return sketch  # Successfully created sketch by name
+        except Exception as e:
+            raise RuntimeError(
+                f"Failed to create sketch with name '{sketch_name}': {e}"
+            ) from e
     else:
-        sketch_name = f"openrelik-workflow-{workflow_id}"
+        if not workflow_id:
+            raise ValueError(
+                "workflow_id is required to generate a default sketch name when "
+                "sketch_id and sketch_name are not provided."
+            )
+        default_sketch_name = f"openrelik-workflow-{workflow_id}"
         # Prevent multiple distributed workers from concurrently creating the same
         # sketch. This Redis-based lock ensures only one worker proceeds at a time, even
         # across different machines. The code will block until the lock is acquired.
         # The lock automatically expires after 60 seconds to prevent deadlocks.
-        with redis_client.lock(sketch_name, timeout=60, blocking_timeout=5):
+        with redis_client.lock(default_sketch_name, timeout=60, blocking_timeout=5):
             # Search for an existing sketch while having the lock
             for _sketch in timesketch_api_client.list_sketches():
-                if _sketch.name == sketch_name:
+                if _sketch.name == default_sketch_name:
                     sketch = _sketch
                     break
-
             # If not found, create a new one
             if not sketch:
-                sketch = timesketch_api_client.create_sketch(sketch_name)
-
-    return sketch
+                sketch = timesketch_api_client.create_sketch(default_sketch_name)
+            if not sketch:  # If creation failed even within the lock
+                raise RuntimeError(
+                    f"Failed to create default sketch '{default_sketch_name}' after acquiring lock."
+                )
+            return sketch
 
 
 # Task name used to register and route the task to the correct queue.
@@ -207,9 +241,6 @@ def upload(
         **sketch_identifier,
         workflow_id=workflow_id,
     )
-
-    if not sketch:
-        raise Exception(f"Failed to create or retrieve sketch '{sketch_name}'")
 
     # Make the sketch public.
     sketch.add_to_acl(make_public=True)
