@@ -9,9 +9,13 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.10"
 celery = { extras = ["redis"], version = "^5.4.0" }
-openrelik-worker-common = "^2024.11.27"
+openrelik-worker-common = "^0.13"
 timesketch-api-client = "^20240215"
 timesketch-import-client = "^20230721"
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-cov = "^5.0.0"
 
 [build-system]
 requires = ["poetry-core"]
